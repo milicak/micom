@@ -214,6 +214,8 @@ sfcstr_ben02.o: ../ben02/sfcstr_ben02.F ../phy/common_blocks.h ../phy/common_for
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy	../ben02/sfcstr_ben02.F
 sfcstr_cesm.o: ../cesm/sfcstr_cesm.F ../phy/common_blocks.h ../phy/common_forc.h mod_xc.o
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy	../cesm/sfcstr_cesm.F
+sfcstr_sngcl.o: ../phy/sfcstr_sngcl.F ../phy/common_blocks.h ../phy/common_forc.h mod_xc.o
+	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy	../phy/sfcstr_sngcl.F
 stdbud.o: ../phy/stdbud.F ../phy/common_blocks.h ../phy/param_bud.h ../phy/common_bud.h ../trc/param_trc.h ../trc/common_trc.h mod_xc.o
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy -I../trc	../phy/stdbud.F
 tavocf.o: ../icedyn/tavocf.F ../icedyn/param_icedyn.h ../icedyn/common_icedyn.h
@@ -225,6 +227,8 @@ mod_thdysi.o
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy -I../trc	../ben02/thermf_ben02.F
 thermf_cesm.o: ../cesm/thermf_cesm.F ../phy/common_blocks.h ../phy/common_forc.h ../phy/common_geo.h ../phy/common_clndr.h ../trc/param_trc.h ../trc/common_trc.h ../phy/param_tke.h mod_xc.o mod_swtfrz.o
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy -I../trc	../cesm/thermf_cesm.F
+thermf_sngcl.o: ../phy/thermf_sngcl.F ../phy/common_blocks.h ../phy/common_forc.h ../trc/param_trc.h ../trc/common_trc.h mod_xc.o
+	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy -I../trc	../phy/thermf_sngcl.F
 tmsmt1.o: ../phy/tmsmt1.F ../phy/common_blocks.h ../trc/param_trc.h ../trc/common_trc.h mod_xc.o
 	$(FC) $(CPPDEFS) $(CPPFLAGS) $(FFLAGS) $(SFFLAGS) $(OTHERFLAGS) -c -I../phy -I../trc	../phy/tmsmt1.F
 tmsmt2.o: ../phy/tmsmt2.F ../phy/common_blocks.h ../trc/param_trc.h ../trc/common_trc.h mod_xc.o
@@ -265,6 +269,8 @@ wtime.o: ../phy/wtime.F
 	cp ../phy/micom_step.F .
 ./chkvar.F: ../phy/chkvar.F
 	cp ../phy/chkvar.F .
+./sfcstr_sngcl.F: ../phy/sfcstr_sngcl.F
+	cp ../phy/sfcstr_sngcl.F .
 ./idarlx.F: ../phy/idarlx.F
 	cp ../phy/idarlx.F .
 ./plast.F: ../icedyn/plast.F
@@ -489,6 +495,8 @@ wtime.o: ../phy/wtime.F
 	cp ../phy/mod_nctools.F .
 ./icaux_ben02.F: ../ben02/icaux_ben02.F
 	cp ../ben02/icaux_ben02.F .
+./thermf_sngcl.F: ../phy/thermf_sngcl.F
+	cp ../phy/thermf_sngcl.F .
 ./external_abort.F: ../drivers/nocoupler/external_abort.F
 	cp ../drivers/nocoupler/external_abort.F .
 ./seaice.F: ../icedyn/seaice.F
@@ -511,34 +519,34 @@ wtime.o: ../phy/wtime.F
 	cp ../icedyn/relcon.F .
 ./param_tke.h: ../phy/param_tke.h
 	cp ../phy/param_tke.h .
-SRC = ../phy/mxlayr.F ../phy/diffus.F ../ben02/icaux_ben02.F ../phy/chksummsk.F ../phy/types.F90 ../phy/eddtra_intdif.F ../phy/inivar.F ../drivers/nocoupler/setlogunit.F ../trc/updtrc.F ../phy/restart_rd.F ../phy/settemmin.F ../phy/gettime.F              \
-../phy/mod_xc.F ../phy/cmnfld.F ../icedyn/relcon.F ../icedyn/mod2ice.F ../phy/mod_swabs.F ../phy/blkdat.F ../trc/restart_trcwt.F ../drivers/nocoupler/micom.F ../phy/geoenv_file.F ../phy/rdlim.F ../idlage/idlage_init.F ../phy/getfrc.F ../phy/bigrid.F      \
-../phy/isnan.F ../phy/pbtcor.F ../trc/restart_ocntrcwt.F ../icedyn/intpmi.F ../drivers/nocoupler/external_abort.F ../phy/chksum.F ../icedyn/weno3pd.F ../ben02/thermf_ben02.F ../ben02/mod_ben02.F ../phy/fill_global.F ../phy/wdiflx.F ../icedyn/iniicedyn.F  \
-../trc/restart_trcrd.F ../phy/inigeo.F ../phy/advect.F ../idlage/idlage_step.F ../phy/thermf.F ../phy/idarlx.F ../phy/initime.F ../trc/initrc.F ../phy/remap_eitflx.F ../phy/convec.F ../drivers/nocoupler/mod_swtfrz.F ../phy/frcdat.F ../phy/barotp.F        \
-../phy/inifrc.F ../phy/wtime.F ../phy/getlpi.F ../icedyn/restart_icerd.F ../phy/cmnfld_bfsqf.F ../cesm/sfcstr_cesm.F ../phy/tmsmt2.F ../cesm/inifrc_cesm.F ../phy/mod_nctools.F ../phy/crc.c ../phy/micom_init.F ../icedyn/icedyn.F ../phy/stdbud.F            \
-../phy/dimensions.F ../trc/restart_ocntrcrd.F ../phy/ictsz_file.F ../icedyn/plast.F ../phy/remap_eitvel.F ../ben02/mod_thdysi.F ../phy/restart_wt.F ../phy/eddtra_gm.F ../phy/cmnfld_nslope.F ../phy/iniphy.F ../phy/tmsmt1.F ../icedyn/restart_icewt.F        \
-../icedyn/tavocf.F ../phy/pgforc.F ../phy/mod_dia.F ../phy/rdcsss.F ../phy/chkvar.F ../ben02/mod_bulktf.F ../trc/ocntrc_init.F ../phy/diapfl.F ../icedyn/seaice.F ../cesm/getfrc_cesm.F ../phy/geoenv_test.F ../icedyn/bcoef.F ../phy/clndr.F                  \
-../icedyn/ice2mod.F ../cesm/geoenv_cesmextra.F ../phy/difest.F ../ben02/sfcstr_ben02.F ../phy/inicon.F ../cesm/data_mct.F ../phy/eosfun.F ../icedyn/icedif.F ../cesm/thermf_cesm.F ../phy/hfharm.F ../icedyn/iniconicedyn.F ../ben02/mod_ben02func.F           \
-../phy/intp1d.F ../phy/penint.F ../phy/momtum.F ../cesm/icaux_cesm.F ../phy/eosdat.F ../icedyn/drift.F ../phy/read_twedon.F ../phy/micom_step.F ../phy/initke.F ../phy/sfcstr.F ../phy/triint.F ../icedyn/iceadv.F ../icedyn/iadvdf.F ../phy/eddtra.F          \
-../phy/isinf.F ../phy/fwbbal.F ../phy/common_seaice.h ../phy/timing.h ../phy/common_blocks.h ../phy/mod_xc_mp.inc ../trc/param_trc.h ../phy/common_eos.h ../icedyn/common_icedyn.h ../phy/common_tke.h ../phy/common_forc.h ../phy/common_bud.h                \
-../trc/common_trc.h ../icedyn/param_icedyn.h ../phy/param_bud.h ../phy/crc.h ../phy/mod_xc_sm.inc ../cesm/common_cesm.h ../phy/common_geo.h ../phy/param_tke.h ../phy/common_clndr.h
-OBJ = mxlayr.o diffus.o icaux_ben02.o chksummsk.o types.o eddtra_intdif.o inivar.o setlogunit.o updtrc.o restart_rd.o settemmin.o gettime.o mod_xc.o cmnfld.o relcon.o mod2ice.o mod_swabs.o blkdat.o restart_trcwt.o micom.o geoenv_file.o rdlim.o            \
-idlage_init.o getfrc.o bigrid.o isnan.o pbtcor.o restart_ocntrcwt.o intpmi.o external_abort.o chksum.o weno3pd.o thermf_ben02.o mod_ben02.o fill_global.o wdiflx.o iniicedyn.o restart_trcrd.o inigeo.o advect.o idlage_step.o thermf.o idarlx.o initime.o     \
-initrc.o remap_eitflx.o convec.o mod_swtfrz.o frcdat.o barotp.o inifrc.o wtime.o getlpi.o restart_icerd.o cmnfld_bfsqf.o sfcstr_cesm.o tmsmt2.o inifrc_cesm.o mod_nctools.o crc.o micom_init.o icedyn.o stdbud.o dimensions.o restart_ocntrcrd.o ictsz_file.o  \
-plast.o remap_eitvel.o mod_thdysi.o restart_wt.o eddtra_gm.o cmnfld_nslope.o iniphy.o tmsmt1.o restart_icewt.o tavocf.o pgforc.o mod_dia.o rdcsss.o chkvar.o mod_bulktf.o ocntrc_init.o diapfl.o seaice.o getfrc_cesm.o geoenv_test.o bcoef.o clndr.o          \
-ice2mod.o geoenv_cesmextra.o difest.o sfcstr_ben02.o inicon.o data_mct.o eosfun.o icedif.o thermf_cesm.o hfharm.o iniconicedyn.o mod_ben02func.o intp1d.o penint.o momtum.o icaux_cesm.o eosdat.o drift.o read_twedon.o micom_step.o initke.o sfcstr.o         \
-triint.o iceadv.o iadvdf.o eddtra.o isinf.o fwbbal.o
-OFF = ../phy/hfharm.F ../phy/intp1d.F ../phy/cmnfld_nslope.F ../phy/momtum.F ../phy/getfrc.F ../phy/thermf.F ../phy/settemmin.F ../phy/eddtra_intdif.F ../idlage/idlage_init.F ../icedyn/bcoef.F ../phy/micom_step.F ../phy/chkvar.F ../phy/idarlx.F           \
-../icedyn/plast.F ../icedyn/iniicedyn.F ../phy/geoenv_file.F ../phy/geoenv_test.F ../phy/initime.F ../phy/blkdat.F ../phy/cmnfld_bfsqf.F ../phy/mod_dia.F ../phy/tmsmt1.F ../phy/common_bud.h ../phy/mod_swabs.F ../phy/crc.h ../phy/fwbbal.F ../phy/inifrc.F  \
-../phy/ictsz_file.F ../phy/pbtcor.F ../phy/isnan.F ../icedyn/iniconicedyn.F ../drivers/nocoupler/micom.F ../phy/advect.F ../phy/timing.h ../trc/restart_ocntrcwt.F ../icedyn/icedif.F ../trc/ocntrc_init.F ../trc/updtrc.F ../drivers/nocoupler/setlogunit.F   \
-../phy/remap_eitvel.F ../phy/param_bud.h ../icedyn/mod2ice.F ../phy/eddtra_gm.F ../phy/getlpi.F ../phy/penint.F ../phy/bigrid.F ../phy/dimensions.F ../phy/inicon.F ../ben02/sfcstr_ben02.F ../trc/restart_ocntrcrd.F ../phy/rdcsss.F ../phy/types.F90         \
-../icedyn/common_icedyn.h ../phy/remap_eitflx.F ../icedyn/icedyn.F ../cesm/thermf_cesm.F ../phy/common_tke.h ../phy/common_forc.h ../phy/crc.c ../phy/inivar.F ../trc/common_trc.h ../phy/difest.F ../phy/mod_xc_sm.inc ../phy/gettime.F ../phy/common_geo.h   \
-../phy/frcdat.F ../phy/stdbud.F ../ben02/mod_thdysi.F ../phy/inigeo.F ../cesm/data_mct.F ../icedyn/restart_icewt.F ../phy/common_seaice.h ../phy/common_blocks.h ../phy/diapfl.F ../phy/initke.F ../idlage/idlage_step.F ../phy/eddtra.F ../phy/triint.F       \
-../phy/fill_global.F ../phy/chksum.F ../drivers/nocoupler/mod_swtfrz.F ../phy/wdiflx.F ../phy/diffus.F ../phy/mod_xc.F ../phy/mod_xc_mp.inc ../phy/sfcstr.F ../phy/restart_rd.F ../icedyn/iadvdf.F ../phy/convec.F ../phy/common_eos.h ../phy/eosfun.F         \
-../trc/restart_trcrd.F ../ben02/mod_ben02func.F ../phy/eosdat.F ../phy/barotp.F ../phy/wtime.F ../phy/iniphy.F ../cesm/icaux_cesm.F ../cesm/inifrc_cesm.F ../cesm/getfrc_cesm.F ../phy/rdlim.F ../icedyn/weno3pd.F ../phy/isinf.F ../trc/param_trc.h           \
-../icedyn/intpmi.F ../trc/initrc.F ../phy/read_twedon.F ../cesm/sfcstr_cesm.F ../phy/micom_init.F ../phy/mxlayr.F ../phy/restart_wt.F ../icedyn/param_icedyn.h ../icedyn/tavocf.F ../phy/pgforc.F ../icedyn/restart_icerd.F ../phy/cmnfld.F                    \
-../trc/restart_trcwt.F ../phy/common_clndr.h ../icedyn/iceadv.F ../ben02/mod_ben02.F ../icedyn/drift.F ../ben02/mod_bulktf.F ../phy/mod_nctools.F ../ben02/icaux_ben02.F ../drivers/nocoupler/external_abort.F ../icedyn/seaice.F ../ben02/thermf_ben02.F      \
-../phy/tmsmt2.F ../cesm/geoenv_cesmextra.F ../phy/chksummsk.F ../cesm/common_cesm.h ../icedyn/ice2mod.F ../phy/clndr.F ../icedyn/relcon.F ../phy/param_tke.h
+SRC = ../phy/mxlayr.F ../phy/diffus.F ../ben02/icaux_ben02.F ../phy/chksummsk.F ../phy/sfcstr_sngcl.F ../phy/types.F90 ../phy/eddtra_intdif.F ../phy/inivar.F ../drivers/nocoupler/setlogunit.F ../trc/updtrc.F ../phy/restart_rd.F ../phy/settemmin.F         \
+../phy/gettime.F ../phy/mod_xc.F ../phy/cmnfld.F ../phy/thermf_sngcl.F ../icedyn/relcon.F ../icedyn/mod2ice.F ../phy/mod_swabs.F ../phy/blkdat.F ../trc/restart_trcwt.F ../drivers/nocoupler/micom.F ../phy/geoenv_file.F ../phy/rdlim.F                       \
+../idlage/idlage_init.F ../phy/getfrc.F ../phy/bigrid.F ../phy/isnan.F ../phy/pbtcor.F ../trc/restart_ocntrcwt.F ../icedyn/intpmi.F ../drivers/nocoupler/external_abort.F ../phy/chksum.F ../icedyn/weno3pd.F ../ben02/thermf_ben02.F ../ben02/mod_ben02.F     \
+../phy/fill_global.F ../phy/wdiflx.F ../icedyn/iniicedyn.F ../trc/restart_trcrd.F ../phy/inigeo.F ../phy/advect.F ../idlage/idlage_step.F ../phy/thermf.F ../phy/idarlx.F ../phy/initime.F ../trc/initrc.F ../phy/remap_eitflx.F ../phy/convec.F               \
+../drivers/nocoupler/mod_swtfrz.F ../phy/frcdat.F ../phy/barotp.F ../phy/inifrc.F ../phy/wtime.F ../phy/getlpi.F ../icedyn/restart_icerd.F ../phy/cmnfld_bfsqf.F ../cesm/sfcstr_cesm.F ../phy/tmsmt2.F ../cesm/inifrc_cesm.F ../phy/mod_nctools.F ../phy/crc.c \
+../phy/micom_init.F ../icedyn/icedyn.F ../phy/stdbud.F ../phy/dimensions.F ../trc/restart_ocntrcrd.F ../phy/ictsz_file.F ../icedyn/plast.F ../phy/remap_eitvel.F ../ben02/mod_thdysi.F ../phy/restart_wt.F ../phy/eddtra_gm.F ../phy/cmnfld_nslope.F           \
+../phy/iniphy.F ../phy/tmsmt1.F ../icedyn/restart_icewt.F ../icedyn/tavocf.F ../phy/pgforc.F ../phy/mod_dia.F ../phy/rdcsss.F ../phy/chkvar.F ../ben02/mod_bulktf.F ../trc/ocntrc_init.F ../phy/diapfl.F ../icedyn/seaice.F ../cesm/getfrc_cesm.F              \
+../phy/geoenv_test.F ../icedyn/bcoef.F ../phy/clndr.F ../icedyn/ice2mod.F ../cesm/geoenv_cesmextra.F ../phy/difest.F ../ben02/sfcstr_ben02.F ../phy/inicon.F ../cesm/data_mct.F ../phy/eosfun.F ../icedyn/icedif.F ../cesm/thermf_cesm.F ../phy/hfharm.F       \
+../icedyn/iniconicedyn.F ../ben02/mod_ben02func.F ../phy/intp1d.F ../phy/penint.F ../phy/momtum.F ../cesm/icaux_cesm.F ../phy/eosdat.F ../icedyn/drift.F ../phy/read_twedon.F ../phy/micom_step.F ../phy/initke.F ../phy/sfcstr.F ../phy/triint.F              \
+../icedyn/iceadv.F ../icedyn/iadvdf.F ../phy/eddtra.F ../phy/isinf.F ../phy/fwbbal.F ../phy/common_seaice.h ../phy/timing.h ../phy/common_blocks.h ../phy/mod_xc_mp.inc ../trc/param_trc.h ../phy/common_eos.h ../icedyn/common_icedyn.h ../phy/common_tke.h   \
+../phy/common_forc.h ../phy/common_bud.h ../trc/common_trc.h ../icedyn/param_icedyn.h ../phy/param_bud.h ../phy/crc.h ../phy/mod_xc_sm.inc ../cesm/common_cesm.h ../phy/common_geo.h ../phy/param_tke.h ../phy/common_clndr.h
+OBJ = mxlayr.o diffus.o icaux_ben02.o chksummsk.o sfcstr_sngcl.o types.o eddtra_intdif.o inivar.o setlogunit.o updtrc.o restart_rd.o settemmin.o gettime.o mod_xc.o cmnfld.o thermf_sngcl.o relcon.o mod2ice.o mod_swabs.o blkdat.o restart_trcwt.o micom.o    \
+geoenv_file.o rdlim.o idlage_init.o getfrc.o bigrid.o isnan.o pbtcor.o restart_ocntrcwt.o intpmi.o external_abort.o chksum.o weno3pd.o thermf_ben02.o mod_ben02.o fill_global.o wdiflx.o iniicedyn.o restart_trcrd.o inigeo.o advect.o idlage_step.o thermf.o  \
+idarlx.o initime.o initrc.o remap_eitflx.o convec.o mod_swtfrz.o frcdat.o barotp.o inifrc.o wtime.o getlpi.o restart_icerd.o cmnfld_bfsqf.o sfcstr_cesm.o tmsmt2.o inifrc_cesm.o mod_nctools.o crc.o micom_init.o icedyn.o stdbud.o dimensions.o               \
+restart_ocntrcrd.o ictsz_file.o plast.o remap_eitvel.o mod_thdysi.o restart_wt.o eddtra_gm.o cmnfld_nslope.o iniphy.o tmsmt1.o restart_icewt.o tavocf.o pgforc.o mod_dia.o rdcsss.o chkvar.o mod_bulktf.o ocntrc_init.o diapfl.o seaice.o getfrc_cesm.o        \
+geoenv_test.o bcoef.o clndr.o ice2mod.o geoenv_cesmextra.o difest.o sfcstr_ben02.o inicon.o data_mct.o eosfun.o icedif.o thermf_cesm.o hfharm.o iniconicedyn.o mod_ben02func.o intp1d.o penint.o momtum.o icaux_cesm.o eosdat.o drift.o read_twedon.o          \
+micom_step.o initke.o sfcstr.o triint.o iceadv.o iadvdf.o eddtra.o isinf.o fwbbal.o
+OFF = ../phy/hfharm.F ../phy/intp1d.F ../phy/cmnfld_nslope.F ../phy/momtum.F ../phy/getfrc.F ../phy/thermf.F ../phy/settemmin.F ../phy/eddtra_intdif.F ../idlage/idlage_init.F ../icedyn/bcoef.F ../phy/micom_step.F ../phy/chkvar.F ../phy/sfcstr_sngcl.F     \
+../phy/idarlx.F ../icedyn/plast.F ../icedyn/iniicedyn.F ../phy/geoenv_file.F ../phy/geoenv_test.F ../phy/initime.F ../phy/blkdat.F ../phy/cmnfld_bfsqf.F ../phy/mod_dia.F ../phy/tmsmt1.F ../phy/common_bud.h ../phy/mod_swabs.F ../phy/crc.h ../phy/fwbbal.F  \
+../phy/inifrc.F ../phy/ictsz_file.F ../phy/pbtcor.F ../phy/isnan.F ../icedyn/iniconicedyn.F ../drivers/nocoupler/micom.F ../phy/advect.F ../phy/timing.h ../trc/restart_ocntrcwt.F ../icedyn/icedif.F ../trc/ocntrc_init.F ../trc/updtrc.F                     \
+../drivers/nocoupler/setlogunit.F ../phy/remap_eitvel.F ../phy/param_bud.h ../icedyn/mod2ice.F ../phy/eddtra_gm.F ../phy/getlpi.F ../phy/penint.F ../phy/bigrid.F ../phy/dimensions.F ../phy/inicon.F ../ben02/sfcstr_ben02.F ../trc/restart_ocntrcrd.F        \
+../phy/rdcsss.F ../phy/types.F90 ../icedyn/common_icedyn.h ../phy/remap_eitflx.F ../icedyn/icedyn.F ../cesm/thermf_cesm.F ../phy/common_tke.h ../phy/common_forc.h ../phy/crc.c ../phy/inivar.F ../trc/common_trc.h ../phy/difest.F ../phy/mod_xc_sm.inc       \
+../phy/gettime.F ../phy/common_geo.h ../phy/frcdat.F ../phy/stdbud.F ../ben02/mod_thdysi.F ../phy/inigeo.F ../cesm/data_mct.F ../icedyn/restart_icewt.F ../phy/common_seaice.h ../phy/common_blocks.h ../phy/diapfl.F ../phy/initke.F ../idlage/idlage_step.F  \
+../phy/eddtra.F ../phy/triint.F ../phy/fill_global.F ../phy/chksum.F ../drivers/nocoupler/mod_swtfrz.F ../phy/wdiflx.F ../phy/diffus.F ../phy/mod_xc.F ../phy/mod_xc_mp.inc ../phy/sfcstr.F ../phy/restart_rd.F ../icedyn/iadvdf.F ../phy/convec.F             \
+../phy/common_eos.h ../phy/eosfun.F ../trc/restart_trcrd.F ../ben02/mod_ben02func.F ../phy/eosdat.F ../phy/barotp.F ../phy/wtime.F ../phy/iniphy.F ../cesm/icaux_cesm.F ../cesm/inifrc_cesm.F ../cesm/getfrc_cesm.F ../phy/rdlim.F ../icedyn/weno3pd.F         \
+../phy/isinf.F ../trc/param_trc.h ../icedyn/intpmi.F ../trc/initrc.F ../phy/read_twedon.F ../cesm/sfcstr_cesm.F ../phy/micom_init.F ../phy/mxlayr.F ../phy/restart_wt.F ../icedyn/param_icedyn.h ../icedyn/tavocf.F ../phy/pgforc.F ../icedyn/restart_icerd.F  \
+../phy/cmnfld.F ../trc/restart_trcwt.F ../phy/common_clndr.h ../icedyn/iceadv.F ../ben02/mod_ben02.F ../icedyn/drift.F ../ben02/mod_bulktf.F ../phy/mod_nctools.F ../ben02/icaux_ben02.F ../phy/thermf_sngcl.F ../drivers/nocoupler/external_abort.F           \
+../icedyn/seaice.F ../ben02/thermf_ben02.F ../phy/tmsmt2.F ../cesm/geoenv_cesmextra.F ../phy/chksummsk.F ../cesm/common_cesm.h ../icedyn/ice2mod.F ../phy/clndr.F ../icedyn/relcon.F ../phy/param_tke.h
 clean: neat
 	-rm -f .cppdefs $(OBJ) micom
 neat:

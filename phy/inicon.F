@@ -51,7 +51,7 @@ c --- ------------------------------------------------------------------
 c --- Initialize configuration specific variables
 c --- ------------------------------------------------------------------
 c
-      if     (expcnf.eq.'cesm') then
+      if     (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         call icaux_cesm
       elseif (expcnf.eq.'ben02clim'.or.expcnf.eq.'ben02syn') then
         call icaux_ben02

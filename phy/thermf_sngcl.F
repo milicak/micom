@@ -39,7 +39,7 @@ c
           salrlx(i,j)=0.
           salflx(i,j)=0.
 #ifdef TRC
-          do nt=1,ntrc
+          do nt=1,ntr
             trflx(nt,i,j)=0.
           enddo
 #endif

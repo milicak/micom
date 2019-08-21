@@ -637,7 +637,7 @@ c
         call ncread('rnfres',rnfres,ip,1,0.)
       endif
 c
-      if (expcnf.eq.'cesm'.or.expcnf'singlecolumn') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         vexist=ncinqv('ustarw_da')
 !        call xcbcst(vexist)
         if (vexist) then

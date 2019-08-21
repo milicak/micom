@@ -1,15 +1,15 @@
 #!/bin/bash
 set -ex
 
-EXPID=r20190417
-RUNDIR=/cluster/work/users/$USER/MNP2/run/$EXPID
-CONFDIR=$HOME/fram_models/models/MNP2/Datain_sigma_2_v4
+EXPID=single_column
+RUNDIR=/cluster/work/users/$USER/micom/run/$EXPID
+CONFDIR=$HOME/fram_models/models/MNP2/Datain_single_column
 #CONFDIR=/nird/home/$USER/MNP2/Datain_sigma_2_era
 ATMDIR=/cluster/shared/noresm/micom/NCEP
 #ATMDIR=/cluster/shared/noresm/micom/ERA40
 CLIMDIR=$ATMDIR/clim
-EXEDIR=$HOME/fram_models/models/MNP2/Micom/$EXPID/build
-SUBDIR=$HOME/fram_models/models/MNP2/Micom/$EXPID/run
+EXEDIR=$HOME/fram_models/models/micom/build
+SUBDIR=$HOME/fram_models/models/micom/run
 NTASKS=8
 NTHREADS=1
 
