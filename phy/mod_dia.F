@@ -278,6 +278,21 @@ c
      .        runid(1:runid_len),'.micom.',ctag,'.',ny,'-',nm,'-',nd,
      .        '.nc'
           endif
+        elseif (expcnf.eq.'singlecolumn') then
+          if (diagmon) then
+            call pstdat(ny,nm,nd,1)
+            write(fname,'(4a,i4.4,a,i2.2,a)')
+     .        runid(1:runid_len),'.micom.',ctag,'.',ny,'-',nm,'.nc'
+          elseif (diagann) then
+            call pstdat(ny,nm,nd,1)
+            write(fname,'(4a,i4.4,a)')
+     .        runid(1:runid_len),'.micom.',ctag,'.',ny,'.nc'
+          else
+            call pstdat(ny,nm,nd,nint(diagfq))
+            write(fname,'(4a,i4.4,a,i2.2,a,i2.2,a)')
+     .        runid(1:runid_len),'.micom.',ctag,'.',ny,'-',nm,'-',nd,
+     .        '.nc'
+          endif
         else
           if (mnproc.eq.1) then
             write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'

@@ -29,6 +29,7 @@ c
         call geoenv_file
         call geoenv_cesmextra
       elseif (expcnf.eq.'ben02clim'.or.expcnf.eq.'ben02syn'.or.
+     .        expcnf.eq.'singlecolumn'.or.
      .        expcnf.eq.'isomip1'.or.expcnf.eq.'isomip2') then
         call geoenv_file
       elseif (expcnf.eq.'test') then

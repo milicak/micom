@@ -21,6 +21,8 @@ c
 c       call getfrc_isomip1
       elseif (expcnf.eq.'isomip2') then
 c       call getfrc_isomip2
+      elseif (expcnf.eq.'singlecolumn') then
+C       call getfrc_sngcl
       else
         if (mnproc.eq.1) then
           write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'

@@ -10,7 +10,7 @@ c
 c
 c --- 'mltmin' = minimum mixed-layer thickness (m)
 c --- 'thktop' = maximum thickness of top layer (m)
-      data mltmin/5./,thktop/10./
+      data mltmin/0.1/,thktop/10./
 c
 c --- slip=+1  for free-slip boundary cond., slip=-1  for non-slip cond.
 c --- 'thkbot' = thickness of bottom boundary layer (m)

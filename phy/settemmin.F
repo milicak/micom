@@ -14,7 +14,7 @@ c
       integer i,j,k,l
       real salfrz,a,b,c
 c
-      if     (expcnf.eq.'cesm') then
+      if     (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
 c
 c --- - Set temmin to a constant freezing temperature for all layers
 c$OMP PARALLEL DO PRIVATE(k,l,i)

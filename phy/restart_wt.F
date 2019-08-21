@@ -50,7 +50,7 @@ c --- set time information
 c
 c --- formulate restart name and open restart file
 c
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         write (rstfnm,'(2a,i4.4,a,i2.2,a,i2.2,a,i5.5,a)')
      .    runid(1:runid_len),'.micom.r.',nyear,'-',nmonth,'-',nday,
      .    '-',mod(nstep,nstep_in_day)*86400,'.nc'
@@ -172,7 +172,7 @@ c --- output model fields to restart file
         write(c2,'(i2.2)') n
         call ncputi('nacc_phy'//c2,nacc_phy(n))
       enddo 
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         call ncputi('l2ci',l2ci)
       endif
 c
@@ -282,7 +282,7 @@ c
         call wrtrst('rnfres',trim(c5p)//' time',rnfres,ip)
       endif
 c
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         call wrtrst('ustarw_da',trim(c5p)//' k2 time',ustarw_da,ip)
         call wrtrst('ztx_da',trim(c5p)//' k2 time',ztx_da,ip)
         call wrtrst('mty_da',trim(c5p)//' k2 time',mty_da,ip)
@@ -642,7 +642,7 @@ c
       if (ditflx) then
 c
 c --- - write diag. heat flux restart file
-        if (expcnf.eq.'cesm') then
+        if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
           fnm=runid(1:runid_len)//'.micom.rtflx.'//rstfnm(runid_len+10:)
         else
           fnm=runid(1:runid_len)//'_tflx_'//rstfnm(runid_len+10:)
@@ -679,7 +679,7 @@ c
       if (disflx) then
 c
 c --- - write diag. salt flux restart file
-        if (expcnf.eq.'cesm') then
+        if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
           fnm=runid(1:runid_len)//'.micom.rsflx.'//rstfnm(runid_len+10:)
         else
           fnm=runid(1:runid_len)//'_sflx_'//rstfnm(runid_len+10:)
@@ -713,7 +713,7 @@ c
         call ncfcls
       endif
 c
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
 c
 c --- - write restart filename to rpointer.ocn
         if (mnproc.eq.1) then
@@ -854,7 +854,7 @@ c
         call defvarrst('rnfres',trim(c5p)//' time')
       endif
 c
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         call defvarrst('ustarw_da',trim(c5p)//' k2 time')
         call defvarrst('ztx_da',trim(c5p)//' k2 time')
         call defvarrst('mty_da',trim(c5p)//' k2 time')

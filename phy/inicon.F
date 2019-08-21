@@ -31,6 +31,8 @@ c --- ------------------------------------------------------------------
 c       call ictsz_isomip1
       elseif (expcnf.eq.'isomip2') then
 c       call ictsz_isomip2
+      elseif (expcnf.eq.'singlecolumn') then
+        call ictsz_file
       else
         if (mnproc.eq.1) then
           write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'

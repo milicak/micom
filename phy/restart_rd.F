@@ -62,7 +62,7 @@ c --- - time corresponding to start date
                  stop '(restart_rd)'
         endif
 c
-      elseif (expcnf.eq.'cesm') then
+      elseif (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
 c
 c --- - get restart file name from rpointer.ocn
         if (mnproc.eq.1) inquire(file='rpointer.ocn',exist=fexist)
@@ -637,7 +637,7 @@ c
         call ncread('rnfres',rnfres,ip,1,0.)
       endif
 c
-      if (expcnf.eq.'cesm') then
+      if (expcnf.eq.'cesm'.or.expcnf'singlecolumn') then
         vexist=ncinqv('ustarw_da')
 !        call xcbcst(vexist)
         if (vexist) then
@@ -1116,7 +1116,7 @@ c
       if (ditflx) then
 c
 c --- - read diag. heat flux restart file if available
-        if (expcnf.eq.'cesm') then
+        if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
           fnm=runid(1:runid_len)//'.micom.rtflx.'//rstfnm(runid_len+10:)
         else
           fnm=runid(1:runid_len)//'_resttflx_'//rstfnm(runid_len+10:)
@@ -1151,7 +1151,7 @@ c
       if (disflx) then
 c
 c --- - read diag. salt flux restart file if available
-        if (expcnf.eq.'cesm') then
+        if (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
           fnm=runid(1:runid_len)//'.micom.rsflx.'//rstfnm(runid_len+10:)
         else
           fnm=runid(1:runid_len)//'_restsflx_'//rstfnm(runid_len+10:)

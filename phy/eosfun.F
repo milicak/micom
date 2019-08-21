@@ -53,7 +53,7 @@ c
       ap160=a16-ap260
 c
 c --- Coefficients for freezing temperature
-      if     (expcnf.eq.'cesm') then
+      if     (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         atf=0.
         btf=-1.8
         ctf=0.
