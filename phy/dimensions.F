@@ -4,7 +4,7 @@ c --- itdm  = total grid dimension in i direction
 c --- jtdm  = total grid dimension in j direction
 c --- kdm   =       grid dimension in k direction
       integer    itdm,jtdm,kdm
-      parameter (itdm=4,jtdm=4,kdm=200)
+      parameter (itdm=1,jtdm=1,kdm=53)
 c
 c --- ijqr  = total number of active tiles
 c --- iqr   = maximum number of tiles in i direction
@@ -12,7 +12,7 @@ c --- jqr   = maximum number of tiles in j direction
 c --- idm   = maximum single tile grid dimension in i direction
 c --- jdm   = maximum single tile grid dimension in j direction
       integer    ijqr,iqr,jqr,idm,jdm
-      parameter (ijqr=1,iqr=1,jqr=1,idm=4,jdm=4)
+      parameter (ijqr=1,iqr=1,jqr=1,idm=1,jdm=1)
 c
 c --- region type (nreg=-1: unknown,
 c ---              nreg= 0:   closed/closed,
@@ -31,10 +31,10 @@ c --- jj_pe = 2nd dimension tile extents
       data i0_pe/
      .  0/
       data ii_pe/
-     .  4/
+     .  1/
       data j0_pe/
      .  0/
       data jj_pe/
-     .  4/
+     .  1/
 c
       end module dimensions
