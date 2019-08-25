@@ -29,6 +29,21 @@ c$OMP PARALLEL DO PRIVATE(k,l,i)
         enddo
 c$OMP END PARALLEL DO
 c
+      elseif (expcnf.eq.'singlecolumn_ncep') then
+c
+c --- - Set temmin to a constant freezing temperature for all layers
+c$OMP PARALLEL DO PRIVATE(k,l,i)
+        do j=1,jj
+          do k=2,kk
+            do l=1,isp(j)
+            do i=max(1,ifp(j,l)),min(ii,ilp(j,l))
+              temmin(i,j,k)=-3.
+            enddo
+            enddo
+          enddo
+        enddo
+c$OMP END PARALLEL DO
+c
       elseif (expcnf.eq.'ben02clim'.or.expcnf.eq.'ben02syn') then
 c
 c --- - Let temmin be the freezing temperature of a given potential

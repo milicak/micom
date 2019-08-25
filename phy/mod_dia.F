@@ -293,6 +293,18 @@ c
      .        runid(1:runid_len),'.micom.',ctag,'.',ny,'-',nm,'-',nd,
      .        '.nc'
           endif
+        elseif (expcnf.eq.'singlecolumn_ncep') then
+          call pstdat(ny,nm,nd,nint(diagfq))
+          if     (mod(nint(diagfq),360).eq.0) then
+            write(fname,'(4a,i4.4,a)')
+     .        runid(1:runid_len),'_',ctag,'_',ny,'.nc'
+          elseif (mod(nint(diagfq),30).eq.0) then
+            write(fname,'(4a,i4.4,a,i2.2,a)')
+     .        runid(1:runid_len),'_',ctag,'_',ny,'.',nm,'.nc'
+          else
+            write(fname,'(4a,i4.4,a,i2.2,a,i2.2,a)')
+     .        runid(1:runid_len),'_',ctag,'_',ny,'.',nm,'.',nd,'.nc'
+          endif
         else
           if (mnproc.eq.1) then
             write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'

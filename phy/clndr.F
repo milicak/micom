@@ -24,6 +24,8 @@ c --- Set calendar type to be used
         calendar='360_day'
       elseif (expcnf.eq.'singlecolumn') then
         calendar='noleap'
+      elseif (expcnf.eq.'singlecolumn_ncep') then
+        calendar='360_day'
       else
         if (mnproc.eq.1) then
           write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'

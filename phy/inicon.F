@@ -33,6 +33,8 @@ c       call ictsz_isomip1
 c       call ictsz_isomip2
       elseif (expcnf.eq.'singlecolumn') then
         call ictsz_file
+      elseif (expcnf.eq.'singlecolumn_ncep') then
+        call ictsz_file
       else
         if (mnproc.eq.1) then
           write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'
@@ -53,6 +55,8 @@ c --- ------------------------------------------------------------------
 c
       if     (expcnf.eq.'cesm'.or.expcnf.eq.'singlecolumn') then
         call icaux_cesm
+      elseif (expcnf.eq.'singlecolumn_ncep') then
+        call icaux_ben02
       elseif (expcnf.eq.'ben02clim'.or.expcnf.eq.'ben02syn') then
         call icaux_ben02
       else

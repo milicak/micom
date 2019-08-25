@@ -659,6 +659,11 @@ c --- - Read interpolation weights if they exist, otherwise compute them
           read (nfu) atm_wgt,atm_iwgt,atm_jwgt
           close (unit=nfu)
         else
+         if (expcnf.eq.'singlecolumn_ncep') then
+          atm_wgt(:,:,:)=1.0
+          atm_iwgt(:,:,:)=1.0
+          atm_jwgt(:,:,:)=1.0
+         else        
           if (exists) close (unit=nfu)
 
           write (lp,*)
@@ -785,9 +790,12 @@ c
           write (nfu) atm_wgt,atm_iwgt,atm_jwgt
           close (unit=nfu)
 c
+         endif  
         endif
 c 
       endif
+      print*,'Mehmet',atm_wgt
+      stop
 c
 c --- Get mask for the full domain
 c$OMP PARALLEL DO PRIVATE(i)
@@ -1642,6 +1650,13 @@ c
      .                  slpres(i,j,l3gi),slpres(i,j,l4gi),
      .                  slpres(i,j,l5gi),xgi)
           if (expcnf.eq.'ben02clim') then
+            tsrf_d=intp1d(sstclm(i,j,l1gi),sstclm(i,j,l2gi),
+     .                    sstclm(i,j,l3gi),sstclm(i,j,l4gi),
+     .                    sstclm(i,j,l5gi),xgi)
+            rice  =intp1d(ricclm(i,j,l1gi),ricclm(i,j,l2gi),
+     .                    ricclm(i,j,l3gi),ricclm(i,j,l4gi),
+     .                    ricclm(i,j,l5gi),xgi)
+          elseif (expcnf.eq.'singlecolumn_ncep') then
             tsrf_d=intp1d(sstclm(i,j,l1gi),sstclm(i,j,l2gi),
      .                    sstclm(i,j,l3gi),sstclm(i,j,l4gi),
      .                    sstclm(i,j,l5gi),xgi)
@@ -2589,6 +2604,9 @@ c --- ------------------------------------------------------------------
 c --- read runoff rate [kg/m^2/s]
 c --- ------------------------------------------------------------------
 c
+      if (expcnf.eq.'singlecolumn_ncep') then
+        runoff(:,:,:)=0.0
+      else
       if (mnproc.eq.1) then
         write(lp,*) 'reading atm. climatological runoff rate...'
 c
@@ -2686,6 +2704,7 @@ c
      .             rnf_ocdpi,
      .             rnf_ocdpj)
       endif
+      endif ! singlecolumn_ncep
 c
       call xctilr(runoff, 1,12, nbdy,nbdy, halo_ps)
 c
@@ -2812,7 +2831,11 @@ c
 c
 c --- Adjust runoff and short-wave radiation to balance freshwater and
 c --- heat fluxes, respectively.
-      crnf=-(prc_sum+eva_sum)/rnf_sum
+      if (expcnf.eq.'singlecolumn_ncep') then
+        crnf=1.0
+      else
+        crnf=-(prc_sum+eva_sum)/rnf_sum
+      endif
       cswa=-(lwa_ave+lht_ave+sht_ave)/swa_ave
 c$OMP PARALLEL DO PRIVATE(k,l,i)
       do j=1-nbdy,jj+nbdy

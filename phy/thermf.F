@@ -22,6 +22,8 @@ c       call thermf_isomip1(m,n,mm,nn,k1m,k1n)
 c       call thermf_isomip2(m,n,mm,nn,k1m,k1n)
       elseif (expcnf.eq.'singlecolumn') then
         call thermf_sngcl(m,n,mm,nn,k1m,k1n)
+      elseif (expcnf.eq.'singlecolumn_ncep') then
+        call thermf_ben02(m,n,mm,nn,k1m,k1n)
       else
         if (mnproc.eq.1) then
           write (lp,'(3a)') ' expcnf=',trim(expcnf),' is unsupported!'
