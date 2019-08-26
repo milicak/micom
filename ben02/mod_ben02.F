@@ -660,9 +660,53 @@ c --- - Read interpolation weights if they exist, otherwise compute them
           close (unit=nfu)
         else
          if (expcnf.eq.'singlecolumn_ncep') then
-          atm_wgt(:,:,:)=1.0
-          atm_iwgt(:,:,:)=1.0
-          atm_jwgt(:,:,:)=1.0
+          atm_wgt(1,1,1)=0.9689991
+          atm_iwgt(1,1,1)=104
+          atm_jwgt(1,1,1)=48
+
+          atm_wgt(2,1,1)=0.3020949
+          atm_iwgt(2,1,1)=104
+          atm_jwgt(2,1,1)=49
+
+          atm_wgt(3,1,1)=0.2336916
+          atm_iwgt(3,1,1)=105
+          atm_jwgt(3,1,1)=48
+
+          atm_wgt(4,1,1)=0.1824822
+          atm_iwgt(4,1,1)=103
+          atm_jwgt(4,1,1)=48
+
+          atm_wgt(5,1,1)=0.1277319
+          atm_iwgt(5,1,1)=104
+          atm_jwgt(5,1,1)=47
+
+          atm_wgt(6,1,1)=7.2956301E-02
+          atm_iwgt(6,1,1)=105
+          atm_jwgt(6,1,1)=49
+
+          atm_wgt(7,1,1)=5.6982886E-02
+          atm_iwgt(7,1,1)=103
+          atm_jwgt(7,1,1)=49
+
+          atm_wgt(8,1,1)=3.0794604E-02
+          atm_iwgt(8,1,1)=105
+          atm_jwgt(8,1,1)=47
+
+          atm_wgt(9,1,1)=2.4045115E-02
+          atm_iwgt(9,1,1)=103
+          atm_jwgt(9,1,1)=47
+
+          atm_wgt(10,1,1)=3.8703666E-03
+          atm_iwgt(10,1,1)=104
+          atm_jwgt(10,1,1)=50
+
+          atm_wgt(11,1,1)=2.5596472E-03
+          atm_iwgt(11,1,1)=106
+          atm_jwgt(11,1,1)=48
+
+          atm_wgt(12,1,1)=1.5607554E-03
+          atm_iwgt(12,1,1)=102
+          atm_jwgt(12,1,1)=48
          else        
           if (exists) close (unit=nfu)
 
@@ -794,8 +838,6 @@ c
         endif
 c 
       endif
-      print*,'Mehmet',atm_wgt
-      stop
 c
 c --- Get mask for the full domain
 c$OMP PARALLEL DO PRIVATE(i)
