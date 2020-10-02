@@ -11,6 +11,7 @@ c
       use mod_nctools
       use mod_dia, only : iotype
 #endif
+      use CVMix_background, only : CVMix_init_bkgnd, CVMix_coeffs_bkgnd
 c
       implicit none
 c
@@ -123,6 +124,9 @@ c
 c
       real rho,sig
       external rho,sig
+      real, dimension(kdm+1) :: depth_int
+      real, dimension(kdm+1) :: Kv_col, Kd_col
+      integer ki
 c
 #if defined(TRC) && defined(TKE)
 #  include "param_trc.h"
@@ -998,6 +1002,22 @@ c --- --------- Brunt-Vaisala frequency.
 c
 c --- --------- Type 2: Background diffusivity is a constant
                 nub=bdmc2
+              elseif (bdmtyp.eq.3) then
+c
+c --- --------- Type 3: CVmix  
+                depth_int(1) = 0.0                                                         
+                do ki=2,kk+1                                                                
+                   depth_int(ki) = p(i,j,ki)/onem                     
+                enddo  
+                call CVMix_init_bkgnd(max_nlev=kk,                                        
+     .              zw = depth_int(:),  !< interface depths relative to the surface in m, must be positive.
+     .              bl1 = 0.8, bl2 = 1.05, bl3 = 4.5e-5, bl4 = 250000.0, 
+     .              prandtl = 1.0) 
+                call CVMix_coeffs_bkgnd(Mdiff_out=Kv_col, 
+     .                           Tdiff_out=Kd_col, nlev=kk, max_nlev=kk)
+                print*,'Mehmet',kd_col
+                stop
+                nub=1.0
               else
                 nub=0.
               endif
